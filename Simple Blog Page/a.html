@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>My Blog</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Merriweather:wght@300;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: Inter, sans-serif;
+      background: #f3f4f6;
+      margin: 0;
+      padding: 0;
+      color: #111827;
+    }
+    header {
+      background: #1e3a8a;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+    .container {
+      max-width: 800px;
+      margin: 20px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    h2 {
+      font-family: Merriweather, serif;
+      margin-bottom: 10px;
+    }
+    form input, form textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #d1d5db;
+      border-radius: 6px;
+      font-size: 1rem;
+    }
+    form button {
+      background: #2563eb;
+      color: white;
+      padding: 10px 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+    form button:hover {
+      background: #1d4ed8;
+    }
+    .post {
+      border-bottom: 1px solid #e5e7eb;
+      padding: 16px 0;
+      transition: background 0.3s;
+    }
+    .post:hover {
+      background: #f9fafb;
+    }
+    .post h3 {
+      font-family: Merriweather, serif;
+      margin: 0;
+      color: #111827;
+    }
+    .meta {
+      font-size: 0.9rem;
+      color: #6b7280;
+      margin-bottom: 6px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>My Blog</h1>
+    <p>Share your thoughts ✍️</p>
+  </header>
+
+  <div class="container">
+    <h2>Submit a Blog Post</h2>
+    <form id="blogForm">
+      <input type="text" id="title" placeholder="Title" required />
+      <input type="text" id="author" placeholder="Author" required />
+      <input type="date" id="date" required />
+      <textarea id="summary" rows="4" placeholder="Summary" required></textarea>
+      <button type="submit">Post</button>
+    </form>
+  </div>
+
+  <div class="container">
+    <h2>Blog Posts</h2>
+    <div id="posts">
+      <!-- Sample Posts -->
+      <div class="post">
+        <h3>The Power of White Space</h3>
+        <div class="meta">by Sam Rivera · Jan 12, 2025</div>
+        <p>Minimalism isn’t about having less—it’s about making room for what matters. Learn how spacing and rhythm improve readability.</p>
+      </div>
+      <div class="post">
+        <h3>A Pragmatic Guide to CSS Grid</h3>
+        <div class="meta">by Lee Chen · Mar 3, 2025</div>
+        <p>CSS Grid doesn’t have to be complicated. Discover repeatable layout patterns you can use today.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('blogForm');
+    const postsContainer = document.getElementById('posts');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const title = document.getElementById('title').value;
+      const author = document.getElementById('author').value;
+      const date = document.getElementById('date').value;
+      const summary = document.getElementById('summary').value;
+
+      const post = document.createElement('div');
+      post.classList.add('post');
+      post.innerHTML = `
+        <h3>${title}</h3>
+        <div class="meta">by ${author} · ${new Date(date).toDateString()}</div>
+        <p>${summary}</p>
+      `;
+
+      postsContainer.prepend(post);
+      form.reset();
+    });
+  </script>
+</body>
+</html>
